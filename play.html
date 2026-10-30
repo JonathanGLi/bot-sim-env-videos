@@ -1,0 +1,15 @@
+<!doctype html><html><head><meta charset="utf-8"><title>BoT_Sim env video</title>
+<style>body{font-family:system-ui,sans-serif;margin:24px;background:#111;color:#eee}video{width:min(960px,100%);background:#000}a{color:#8cf}h1{font-size:18px}</style></head>
+<body><h1 id="title"></h1><video id="v" controls autoplay muted loop playsinline></video>
+<p><a id="all" href="./">All videos</a> · <a id="raw">Open the mp4 directly</a></p>
+<script>
+const name = new URLSearchParams(location.search).get("v") || "";
+if (/^[a-z0-9_]+$/.test(name)) {
+  const src = "videos/" + name + ".mp4";
+  document.getElementById("v").src = src;
+  document.getElementById("raw").href = src;
+  document.getElementById("title").textContent = name.replace(/_/g, " ");
+  const env = name.replace(/_(isaac|mujoco)_(init|goal)_seed\d$/, "");
+  document.getElementById("all").href = "./#" + env;
+}
+</script></body></html>
