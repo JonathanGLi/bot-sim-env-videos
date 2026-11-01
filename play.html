@@ -5,7 +5,8 @@
 <script>
 const name = new URLSearchParams(location.search).get("v") || "";
 if (/^[a-z0-9_]+$/.test(name)) {
-  const src = "videos/" + name + ".mp4";
+  // Skip the browser cache: clips are replaced in place when an env changes.
+  const src = "videos/" + name + ".mp4?r=" + Date.now();
   document.getElementById("v").src = src;
   document.getElementById("raw").href = src;
   document.getElementById("title").textContent = name.replace(/_/g, " ");
